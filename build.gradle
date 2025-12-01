@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.4'  // Compatible with Gradle 8.5
+        classpath 'com.android.tools.build:gradle:8.4.2'  // Compatible with Gradle 8.5
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -17,13 +17,13 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 
-    configurations.all {
+    configurations.configureEach {
         resolutionStrategy {
             force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
         }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
 }
